@@ -1,4 +1,5 @@
 -- Made by Nnoggie, 2017-2020
+-- Work Updated and mantained by Pug 2020
 local AddonName, MDT = ...
 local L = MDT.L
 local mainFrameStrata = "HIGH"
@@ -143,7 +144,7 @@ do
 
     function MDT.ADDON_LOADED(self, addon)
         if addon == "KeystoneMaps" then
-			db = LibStub("AceDB-3.0"):New("MythicDungeonToolsDB", defaultSavedVars).global
+			db = LibStub("AceDB-3.0"):New("KeystoneMapsDB", defaultSavedVars).global
 			icon:Register("KeystoneMaps", LDB, db.minimap)
 			if not db.minimap.hide then
 				icon:Show("KeystoneMaps")
@@ -219,16 +220,16 @@ MDT.scaleMultiplier = {}
 --lvl 4 affix, lvl 7 affix, tyrannical/fortified, seasonal affix
 local affixWeeks = {
     [1] =  {[1]=11,[2]=3,[3]=10,[4]=121}, -->>Bursting, Volcanic, Fortified
-    [2] =  {[1]=0,[2]=0,[3]=0,[4]=0},
-    [3] =  {[1]=0,[2]=0,[3]=0,[4]=0},
-    [4] =  {[1]=0,[2]=0,[3]=0,[4]=0},
-    [5] =  {[1]=0,[2]=0,[3]=0,[4]=0},
-    [6] =  {[1]=0,[2]=0,[3]=0,[4]=0},
-    [7] =  {[1]=0,[2]=0,[3]=0,[4]=0},
+    [2] =  {[1]=7,[2]=124,[3]=9,[4]=121}, -->>  Bolstering Storming
+    [3] =  {[1]=123,[2]=12,[3]=10,[4]=121}, -->> Spitefull, Griveous
+    [4] =  {[1]=122,[2]=4,[3]=9,[4]=121}, -->>  Inspiring	Necrotic
+    [5] =  {[1]=8,[2]=14,[3]=10,[4]=121}, -->>  Sanguine	Quaking
+    [6] =  {[1]=6,[2]=13,[3]=9,[4]=121}, -->>  Raging	Explosive
+    [7] =  {[1]=123,[2]=3,[3]=10,[4]=121}, -->>  Spiteful	Volcanic
     [8] =  {[1]=7,[2]=4,[3]=9,[4]=121},  -->>Bolstering, Necrotic, Tyrannical
-    [9] =  {[1]=124,[2]=122,[3]=10,[4]=121},   -->>Storming, Inspiring, Fortified
+    [9] =  {[1]=122,[2]=124,[3]=10,[4]=121},   -->>Storming, Inspiring, Fortified
     [10] = {[1]=11,[2]=13,[3]=9,[4]=121},  -->>Bursting, Explosive, Tyrannical
-    [11] = {[1]=4,[2]=7,[3]=10,[4]=121},      -->>Sanguine, Grievous, Fortified
+    [11] = {[1]=8,[2]=12,[3]=10,[4]=121},      -->>Sanguine, Grievous, Fortified
     [12] = {[1]=6,[2]=14,[3]=9,[4]=121},   -->>Raging, Quaking, Tyrannical
 }
 
@@ -1020,7 +1021,7 @@ function MDT:IsFrameOffScreen()
 end
 
 local bottomTips = {
-    [1] = L["Please report any bugs on https://github.com/Nnoggie/MythicDungeonTools/issues"],
+    [1] = L["Please report any bugs on -URL-"],
     [2] = L["Hold CTRL to single-select enemies."],
     [3] = L["Hold SHIFT to create a new pull while selecting enemies."],
     [4] = L["Hold SHIFT to delete all presets with the delete preset button."],
@@ -1061,7 +1062,7 @@ function MDT:MakeTopBottomTextures(frame)
 		frame.topPanelString:SetJustifyV("CENTER")
 		--frame.topPanelString:SetWidth(600)
 		frame.topPanelString:SetHeight(20)
-		frame.topPanelString:SetText("Mythic Dungeon Tools")
+		frame.topPanelString:SetText("Keystone Maps")
 		frame.topPanelString:ClearAllPoints()
 		frame.topPanelString:SetPoint("CENTER", frame.topPanel, "CENTER", 10, 0)
 		frame.topPanelString:Show()
@@ -4369,7 +4370,7 @@ end
 ---Register the options of the addon to the blizzard options
 function MDT:RegisterOptions()
     MDT.blizzardOptionsMenuTable = {
-        name = "Mythic Dungeon Tools",
+        name = "Keystone Maps",
         type = 'group',
         args = {
             --[[
@@ -5014,7 +5015,7 @@ function initFrames()
                 if self:IsForbidden() then return end
                 self:SetTemplate("Transparent", nil, true) --ignore updates
                 local r, g, b = self:GetBackdropColor()
-                self:SetBackdropColor(r, g, b, ElvUI[1].Tooltip.db.colorAlpha)
+                self:SetBackdropColor(r, g, b, ElvUI[2].Tooltip.db.colorAlpha)
             end)
             if tooltip.String then tooltip.String:SetFont(tooltip.String:GetFont(),11) end
             if tooltip.topString then tooltip.topString:SetFont(tooltip.topString:GetFont(),11) end
