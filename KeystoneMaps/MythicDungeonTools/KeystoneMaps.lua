@@ -2716,7 +2716,7 @@ function MDT:UpdateDungeonDropDown()
             group.DungeonDropdown:AddItem(i,dungeonList[i])
         end
     elseif db.currentExpansion == 3 then
-        for i = 1,8 do
+        for i = 29,36 do
             group.DungeonDropdown:AddItem(i,dungeonList[i])
         end
     end
