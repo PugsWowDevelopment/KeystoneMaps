@@ -17,16 +17,16 @@ MDT.BackdropColor = { 0.058823399245739, 0.058823399245739, 0.058823399245739, 0
 local AceGUI = LibStub("AceGUI-3.0")
 local db
 local icon = LibStub("LibDBIcon-1.0")
-local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("MythicDungeonTools", {
+local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("KeystoneMaps", {
 	type = "data source",
-	text = "Mythic Dungeon Tools",
+	text = "Keystone Maps",
 	icon = "Interface\\ICONS\\inv_relics_hourglass",
 	OnClick = function(button,buttonPressed)
 		if buttonPressed == "RightButton" then
 			if db.minimap.lock then
-				icon:Unlock("MythicDungeonTools")
+				icon:Unlock("KeystoneMaps")
 			else
-				icon:Lock("MythicDungeonTools")
+				icon:Lock("KeystoneMaps")
 			end
 		else
 			MDT:ShowInterface()
@@ -34,7 +34,7 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("MythicDungeonTools", {
 	end,
 	OnTooltipShow = function(tooltip)
 		if not tooltip or not tooltip.AddLine then return end
-		tooltip:AddLine(mythicColor .."Mythic Dungeon Tools|r")
+		tooltip:AddLine(mythicColor .."Keystone Maps|r")
 		tooltip:AddLine(L["Click to toggle AddOn Window"])
 		tooltip:AddLine(L["Right-click to lock Minimap Button"])
 	end,
@@ -48,7 +48,7 @@ BINDING_NAME_MDTTOGGLE = L["Toggle Window"]
 BINDING_NAME_MDTNPC = L["New NPC at Cursor Position"]
 BINDING_NAME_MDTWAYPOINT = L["New Patrol Waypoint at Cursor Position"]
 
-function SlashCmdList.MYTHICDUNGEONTOOLS(cmd, editbox)
+function SlashCmdList.KEYSTONEMAPS(cmd, editbox)
 	local rqst, arg = strsplit(' ', cmd)
 	if rqst == "devmode" then
 		MDT:ToggleDevMode()
@@ -142,11 +142,11 @@ do
     end)
 
     function MDT.ADDON_LOADED(self, addon)
-        if addon == "MythicDungeonTools" then
+        if addon == "KeystoneMaps" then
 			db = LibStub("AceDB-3.0"):New("MythicDungeonToolsDB", defaultSavedVars).global
-			icon:Register("MythicDungeonTools", LDB, db.minimap)
+			icon:Register("KeystoneMaps", LDB, db.minimap)
 			if not db.minimap.hide then
-				icon:Show("MythicDungeonTools")
+				icon:Show("KeystoneMaps")
 			end
 
             --if db.dataCollectionActive then MDT.DataCollection:Init() end
@@ -449,6 +449,7 @@ function MDT:GetSublevelName(dungeonIdx, sublevelIdx)
 end
 
 MDT.dungeonMaps = {
+
 	[1] = {
 		[0]= "BlackRookHoldDungeon",
 		[1]= "BlackRookHoldDungeon1_",
@@ -646,6 +647,7 @@ MDT.dungeonMaps = {
         [4] = "TheaterOfPain_AbomTop",
         [5] = "TheaterOfPain_AbomBot",
     },
+
 
 }
 MDT.dungeonBosses = {}
@@ -1489,16 +1491,16 @@ function MDT:MakeSidePanel(frame)
         if value == true then
             frame.toggleForceColorBlindMode:SetDisabled(false)
             MDT:ColorAllPulls()
-            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\MythicDungeonTools\\Textures\\helpIconRnbw")
+            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\KeystoneMaps\\Textures\\helpIconRnbw")
         else
             frame.toggleForceColorBlindMode:SetDisabled(true)
-            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\MythicDungeonTools\\Textures\\helpIconGrey")
+            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\KeystoneMaps\\Textures\\helpIconGrey")
         end
 	end)
     --AutomaticColorsCogwheel
     frame.AutomaticColorsCogwheel = AceGUI:Create("Icon")
     local colorCogwheel = frame.AutomaticColorsCogwheel
-    colorCogwheel:SetImage("Interface\\AddOns\\MythicDungeonTools\\Textures\\helpIconRnbw")
+    colorCogwheel:SetImage("Interface\\AddOns\\KeystoneMaps\\Textures\\helpIconRnbw")
     colorCogwheel:SetImageSize(25,25)
     colorCogwheel:SetWidth(35)
     colorCogwheel:SetCallback("OnEnter",function(...)
@@ -2714,7 +2716,7 @@ function MDT:UpdateDungeonDropDown()
             group.DungeonDropdown:AddItem(i,dungeonList[i])
         end
     elseif db.currentExpansion == 3 then
-        for i = 29,37 do
+        for i = 29,36 do
             group.DungeonDropdown:AddItem(i,dungeonList[i])
         end
     end
@@ -3610,10 +3612,10 @@ function MDT:MakeAutomaticColorsFrame(frame)
             frame.toggleForceColorBlindMode:SetDisabled(false)
             MDT:ColorAllPulls()
             MDT:DrawAllHulls()
-            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\MythicDungeonTools\\Textures\\helpIconRnbw")
+            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\KeystoneMaps\\Textures\\helpIconRnbw")
         else
             frame.toggleForceColorBlindMode:SetDisabled(true)
-            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\MythicDungeonTools\\Textures\\helpIconGrey")
+            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\KeystoneMaps\\Textures\\helpIconGrey")
         end
 	end)
     frame.automaticColorsFrame:AddChild(frame.AutomaticColorsCheck)
@@ -3657,7 +3659,7 @@ function MDT:MakeAutomaticColorsFrame(frame)
             db.colorPaletteInfo.autoColoring = true
             frame.AutomaticColorsCheck:SetValue(db.colorPaletteInfo.autoColoring)
             frame.AutomaticColorsCheckSidePanel:SetValue(db.colorPaletteInfo.autoColoring)
-            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\MythicDungeonTools\\Textures\\helpIconRnbw")
+            MDT.main_frame.AutomaticColorsCogwheel:SetImage("Interface\\AddOns\\KeystoneMaps\\Textures\\helpIconRnbw")
             frame.toggleForceColorBlindMode:SetDisabled(false)
         end
         MDT:SetPresetColorPaletteInfo()
@@ -4403,9 +4405,9 @@ function MDT:RegisterOptions()
                 set = function(_, newValue)
                     db.minimap.hide = not newValue
                     if not db.minimap.hide then
-                        icon:Show("MythicDungeonTools")
+                        icon:Show("KeystoneMaps")
                     else
-                        icon:Hide("MythicDungeonTools")
+                        icon:Hide("KeystoneMaps")
                     end
                 end,
                 order = 1,
@@ -4449,8 +4451,8 @@ function MDT:RegisterOptions()
             },
         }
     }
-	LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("MythicDungeonTools", MDT.blizzardOptionsMenuTable)
-	self.blizzardOptionsMenu = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("MythicDungeonTools", "MythicDungeonTools")
+	LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("KeystoneMaps", MDT.blizzardOptionsMenuTable)
+	self.blizzardOptionsMenu = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("KeystoneMaps", "KeystoneMaps")
 end
 
 function MDT:Round(number, decimals)

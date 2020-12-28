@@ -1303,7 +1303,7 @@ local function Constructor()
     local pickedGlow = button:CreateTexture(nil, "OVERLAY")
     button.pickedGlow = pickedGlow
     --["heartofazeroth-list-item-selected"] = {356, 82, 0.779297, 0.953125, 0.653809, 0.693848, false, false},
-    pickedGlow:SetTexture("Interface\\AddOns\\MythicDungeonTools\\Textures\\HeartOfAzerothSelection")
+    pickedGlow:SetTexture("Interface\\AddOns\\KeystoneMaps\\Textures\\HeartOfAzerothSelection")
     pickedGlow:SetTexCoord(0, 0.697265625, 0, 0.625)
     pickedGlow:SetAllPoints(button)
     pickedGlow:Hide()
