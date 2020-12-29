@@ -41,9 +41,9 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("KeystoneMaps", {
 	end,
 })
 
-SLASH_MYTHICDUNGEONTOOLS1 = "/mplus"
-SLASH_MYTHICDUNGEONTOOLS2 = "/mdt"
-SLASH_MYTHICDUNGEONTOOLS3 = "/mythicdungeontools"
+SLASH_KEYSTONEMAPS1 = "/mplus"
+SLASH_KEYSTONEMAPS2 = "/km"
+SLASH_KEYSTONEMAPS3 = "/keystonemaps"
 
 BINDING_NAME_MDTTOGGLE = L["Toggle Window"]
 BINDING_NAME_MDTNPC = L["New NPC at Cursor Position"]
@@ -130,6 +130,8 @@ do
         defaultSavedVars.global.currentPreset[i] = 1
     end
 end
+
+
 
 -- Init db
 do
@@ -1053,7 +1055,7 @@ function MDT:MakeTopBottomTextures(frame)
 		frame.topPanelTex:SetAllPoints()
 		frame.topPanelTex:SetDrawLayer(canvasDrawLayer, -5)
 		frame.topPanelTex:SetColorTexture(unpack(MDT.BackdropColor))
-		frame.topPanelString = frame.topPanel:CreateFontString("MDT name")
+		frame.topPanelString = frame.topPanel:CreateFontString("KM name")
 		--use default font if ElvUI is enabled
 		--if IsAddOnLoaded("ElvUI") then
         frame.topPanelString:SetFontObject("GameFontNormalMed3")
@@ -1295,7 +1297,7 @@ function MDT:MakeSidePanel(frame)
     frame.sidePanelImportButton.frame:SetScript("OnEnter",function()
         GameTooltip:SetOwner(frame.sidePanelImportButton.frame, "ANCHOR_BOTTOMLEFT",frame.sidePanelImportButton.frame:GetWidth()*(-1),frame.sidePanelImportButton.frame:GetHeight())
         GameTooltip:AddLine(L["Import a preset from a text string"],1,1,1)
-        GameTooltip:AddLine(L["You can find MDT exports from other users on the wago.io website"],1,1,1,1)
+        GameTooltip:AddLine(L["You can find Dungeon Routes exports from other users on the wago.io website"],1,1,1,1)
         GameTooltip:Show()
     end)
     frame.sidePanelImportButton.frame:SetScript("OnLeave",function()
@@ -1328,7 +1330,7 @@ function MDT:MakeSidePanel(frame)
     frame.sidePanelExportButton.frame:SetScript("OnEnter",function()
         GameTooltip:SetOwner(frame.sidePanelExportButton.frame, "ANCHOR_BOTTOMLEFT",frame.sidePanelExportButton.frame:GetWidth()*(-2),frame.sidePanelExportButton.frame:GetHeight())
         GameTooltip:AddLine(L["Export the preset as a text string"],1,1,1)
-        GameTooltip:AddLine(L["You can share MDT exports on the wago.io website"],1,1,1,1)
+        GameTooltip:AddLine(L["You can share dungeon route exports on the wago.io website"],1,1,1,1)
         GameTooltip:Show()
     end)
     frame.sidePanelExportButton.frame:SetScript("OnLeave",function()
@@ -1754,6 +1756,9 @@ function MDT:MakeSidePanel(frame)
 	frame.sidePanel.ProgressBar:SetPoint("TOP",frame.sidePanel.WidgetGroup.frame,"BOTTOM",-10,5)
     MDT:SkinProgressBar(frame.sidePanel.ProgressBar)
 end
+
+
+
 
 ---ToggleMDIMode
 ---Enables display to override beguiling+freehold week
@@ -4917,7 +4922,7 @@ function MDT:ResetDataCache()
 end
 
 function MDT:HardReset()
-    MythicDungeonToolsDB = nil
+    KeystoneMapsDB = nil
     ReloadUI()
 end
 
